@@ -1,0 +1,1506 @@
+
+SMS_Guard.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         00000638  00000000  00000000  00000074  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .data         00000096  00800060  00000638  000006ac  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  2 .bss          000000a1  008000f6  000006ce  00000742  2**0
+                  ALLOC
+  3 .debug_aranges 00000060  00000000  00000000  00000742  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  4 .debug_pubnames 0000027b  00000000  00000000  000007a2  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  5 .debug_info   00000f15  00000000  00000000  00000a1d  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_abbrev 000005a2  00000000  00000000  00001932  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_line   00000a8f  00000000  00000000  00001ed4  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_frame  00000200  00000000  00000000  00002964  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_str    0000038b  00000000  00000000  00002b64  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_loc    0000051a  00000000  00000000  00002eef  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_ranges 00000078  00000000  00000000  00003409  2**0
+                  CONTENTS, READONLY, DEBUGGING
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 2a 00 	jmp	0x54	; 0x54 <__ctors_end>
+   4:	0c 94 91 00 	jmp	0x122	; 0x122 <__vector_1>
+   8:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+   c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  10:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  14:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  18:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  1c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  20:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  24:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  28:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  2c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  30:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  34:	0c 94 df 00 	jmp	0x1be	; 0x1be <__vector_13>
+  38:	0c 94 09 01 	jmp	0x212	; 0x212 <__vector_14>
+  3c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  40:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  44:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  48:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  4c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  50:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+
+00000054 <__ctors_end>:
+  54:	11 24       	eor	r1, r1
+  56:	1f be       	out	0x3f, r1	; 63
+  58:	cf e5       	ldi	r28, 0x5F	; 95
+  5a:	d8 e0       	ldi	r29, 0x08	; 8
+  5c:	de bf       	out	0x3e, r29	; 62
+  5e:	cd bf       	out	0x3d, r28	; 61
+
+00000060 <__do_copy_data>:
+  60:	10 e0       	ldi	r17, 0x00	; 0
+  62:	a0 e6       	ldi	r26, 0x60	; 96
+  64:	b0 e0       	ldi	r27, 0x00	; 0
+  66:	e8 e3       	ldi	r30, 0x38	; 56
+  68:	f6 e0       	ldi	r31, 0x06	; 6
+  6a:	02 c0       	rjmp	.+4      	; 0x70 <.do_copy_data_start>
+
+0000006c <.do_copy_data_loop>:
+  6c:	05 90       	lpm	r0, Z+
+  6e:	0d 92       	st	X+, r0
+
+00000070 <.do_copy_data_start>:
+  70:	a6 3f       	cpi	r26, 0xF6	; 246
+  72:	b1 07       	cpc	r27, r17
+  74:	d9 f7       	brne	.-10     	; 0x6c <.do_copy_data_loop>
+
+00000076 <__do_clear_bss>:
+  76:	11 e0       	ldi	r17, 0x01	; 1
+  78:	a6 ef       	ldi	r26, 0xF6	; 246
+  7a:	b0 e0       	ldi	r27, 0x00	; 0
+  7c:	01 c0       	rjmp	.+2      	; 0x80 <.do_clear_bss_start>
+
+0000007e <.do_clear_bss_loop>:
+  7e:	1d 92       	st	X+, r1
+
+00000080 <.do_clear_bss_start>:
+  80:	a7 39       	cpi	r26, 0x97	; 151
+  82:	b1 07       	cpc	r27, r17
+  84:	e1 f7       	brne	.-8      	; 0x7e <.do_clear_bss_loop>
+  86:	0e 94 a3 00 	call	0x146	; 0x146 <main>
+  8a:	0c 94 1a 03 	jmp	0x634	; 0x634 <_exit>
+
+0000008e <__bad_interrupt>:
+  8e:	0c 94 00 00 	jmp	0	; 0x0 <__heap_end>
+
+00000092 <portsInit>:
+ }
+}
+
+
+
+void portsInit(){
+  92:	8a b3       	in	r24, 0x1a	; 26
+  94:	86 60       	ori	r24, 0x06	; 6
+  96:	8a bb       	out	0x1a, r24	; 26
+	LEDS_DDR|=(1<<POWER_ON_PIN)|(1<<STATUS_PIN);
+	LEDS_PORT&=~((1<<POWER_ON_PIN)|(1<<STATUS_PIN));
+  98:	8b b3       	in	r24, 0x1b	; 27
+  9a:	89 7f       	andi	r24, 0xF9	; 249
+  9c:	8b bb       	out	0x1b, r24	; 27
+	SetBit(LEDS_PORT, POWER_ON_PIN);
+  9e:	da 9a       	sbi	0x1b, 2	; 27
+
+	//ClrBit(BUTT_DDR, BUTT_PIN);
+	//SetBit(BUTT_PORT, BUTT_PIN);
+}
+  a0:	08 95       	ret
+
+000000a2 <statusError>:
+ 	}else{
+ 		statusOk();
+ 	}
+}
+
+void statusError(){
+  a2:	20 e0       	ldi	r18, 0x00	; 0
+  a4:	30 e0       	ldi	r19, 0x00	; 0
+    milliseconds can be achieved.
+ */
+void
+_delay_loop_2(uint16_t __count)
+{
+	__asm__ volatile (
+  a6:	44 e6       	ldi	r20, 0x64	; 100
+  a8:	50 e0       	ldi	r21, 0x00	; 0
+	for(int i=0; i<6; i++){
+		SetBit(LEDS_PORT, STATUS_PIN);
+  aa:	d9 9a       	sbi	0x1b, 1	; 27
+  ac:	80 ea       	ldi	r24, 0xA0	; 160
+  ae:	9f e0       	ldi	r25, 0x0F	; 15
+  b0:	fa 01       	movw	r30, r20
+  b2:	31 97       	sbiw	r30, 0x01	; 1
+  b4:	f1 f7       	brne	.-4      	; 0xb2 <statusError+0x10>
+		__ticks = (uint16_t) (__ms * 10.0);
+		while(__ticks)
+		{
+			// wait 1/10 ms
+			_delay_loop_2(((F_CPU) / 4e3) / 10);
+			__ticks --;
+  b6:	01 97       	sbiw	r24, 0x01	; 1
+		__ticks = 1;
+	else if (__tmp > 65535)
+	{
+		//	__ticks = requested delay in 1/10 ms
+		__ticks = (uint16_t) (__ms * 10.0);
+		while(__ticks)
+  b8:	d9 f7       	brne	.-10     	; 0xb0 <statusError+0xe>
+		delay(400);
+		ClrBit(LEDS_PORT, STATUS_PIN);
+  ba:	d9 98       	cbi	0x1b, 1	; 27
+  bc:	80 ea       	ldi	r24, 0xA0	; 160
+  be:	9f e0       	ldi	r25, 0x0F	; 15
+  c0:	fa 01       	movw	r30, r20
+  c2:	31 97       	sbiw	r30, 0x01	; 1
+  c4:	f1 f7       	brne	.-4      	; 0xc2 <statusError+0x20>
+		{
+			// wait 1/10 ms
+			_delay_loop_2(((F_CPU) / 4e3) / 10);
+			__ticks --;
+  c6:	01 97       	sbiw	r24, 0x01	; 1
+		__ticks = 1;
+	else if (__tmp > 65535)
+	{
+		//	__ticks = requested delay in 1/10 ms
+		__ticks = (uint16_t) (__ms * 10.0);
+		while(__ticks)
+  c8:	d9 f7       	brne	.-10     	; 0xc0 <statusError+0x1e>
+ 		statusOk();
+ 	}
+}
+
+void statusError(){
+	for(int i=0; i<6; i++){
+  ca:	2f 5f       	subi	r18, 0xFF	; 255
+  cc:	3f 4f       	sbci	r19, 0xFF	; 255
+  ce:	26 30       	cpi	r18, 0x06	; 6
+  d0:	31 05       	cpc	r19, r1
+  d2:	59 f7       	brne	.-42     	; 0xaa <statusError+0x8>
+		SetBit(LEDS_PORT, STATUS_PIN);
+		delay(400);
+		ClrBit(LEDS_PORT, STATUS_PIN);
+		delay(400);
+	}
+}
+  d4:	08 95       	ret
+
+000000d6 <checkStatus>:
+
+	//ClrBit(BUTT_DDR, BUTT_PIN);
+	//SetBit(BUTT_PORT, BUTT_PIN);
+}
+
+void checkStatus(){
+  d6:	80 91 3c 01 	lds	r24, 0x013C
+  da:	88 23       	and	r24, r24
+  dc:	19 f4       	brne	.+6      	; 0xe4 <checkStatus+0xe>
+	 if (status==FALSE){
+ 		statusError();
+  de:	0e 94 51 00 	call	0xa2	; 0xa2 <statusError>
+  e2:	08 95       	ret
+		delay(400);
+	}
+}
+
+void statusOk(){
+		SetBit(LEDS_PORT, STATUS_PIN);
+  e4:	d9 9a       	sbi	0x1b, 1	; 27
+  e6:	80 e3       	ldi	r24, 0x30	; 48
+  e8:	95 e7       	ldi	r25, 0x75	; 117
+  ea:	24 e6       	ldi	r18, 0x64	; 100
+  ec:	30 e0       	ldi	r19, 0x00	; 0
+  ee:	f9 01       	movw	r30, r18
+  f0:	31 97       	sbiw	r30, 0x01	; 1
+  f2:	f1 f7       	brne	.-4      	; 0xf0 <checkStatus+0x1a>
+		{
+			// wait 1/10 ms
+			_delay_loop_2(((F_CPU) / 4e3) / 10);
+			__ticks --;
+  f4:	01 97       	sbiw	r24, 0x01	; 1
+		__ticks = 1;
+	else if (__tmp > 65535)
+	{
+		//	__ticks = requested delay in 1/10 ms
+		__ticks = (uint16_t) (__ms * 10.0);
+		while(__ticks)
+  f6:	d9 f7       	brne	.-10     	; 0xee <checkStatus+0x18>
+		delay(3000);
+		ClrBit(LEDS_PORT, STATUS_PIN);
+  f8:	d9 98       	cbi	0x1b, 1	; 27
+  fa:	08 95       	ret
+
+000000fc <statusOk>:
+		ClrBit(LEDS_PORT, STATUS_PIN);
+		delay(400);
+	}
+}
+
+void statusOk(){
+  fc:	d9 9a       	sbi	0x1b, 1	; 27
+  fe:	80 e3       	ldi	r24, 0x30	; 48
+ 100:	95 e7       	ldi	r25, 0x75	; 117
+ 102:	24 e6       	ldi	r18, 0x64	; 100
+ 104:	30 e0       	ldi	r19, 0x00	; 0
+ 106:	f9 01       	movw	r30, r18
+ 108:	31 97       	sbiw	r30, 0x01	; 1
+ 10a:	f1 f7       	brne	.-4      	; 0x108 <statusOk+0xc>
+		{
+			// wait 1/10 ms
+			_delay_loop_2(((F_CPU) / 4e3) / 10);
+			__ticks --;
+ 10c:	01 97       	sbiw	r24, 0x01	; 1
+		__ticks = 1;
+	else if (__tmp > 65535)
+	{
+		//	__ticks = requested delay in 1/10 ms
+		__ticks = (uint16_t) (__ms * 10.0);
+		while(__ticks)
+ 10e:	d9 f7       	brne	.-10     	; 0x106 <statusOk+0xa>
+		SetBit(LEDS_PORT, STATUS_PIN);
+		delay(3000);
+		ClrBit(LEDS_PORT, STATUS_PIN);
+ 110:	d9 98       	cbi	0x1b, 1	; 27
+}
+ 112:	08 95       	ret
+
+00000114 <ints_init>:
+
+void ints_init( void )
+{
+ 114:	85 b7       	in	r24, 0x35	; 53
+ 116:	83 60       	ori	r24, 0x03	; 3
+ 118:	85 bf       	out	0x35, r24	; 53
+  MCUCR |= (1<<ISC01)|(1<<ISC00);
+  SetBit(GICR, INT0);
+ 11a:	8b b7       	in	r24, 0x3b	; 59
+ 11c:	80 64       	ori	r24, 0x40	; 64
+ 11e:	8b bf       	out	0x3b, r24	; 59
+}
+ 120:	08 95       	ret
+
+00000122 <__vector_1>:
+
+ISR( INT0_vect )
+{
+ 122:	1f 92       	push	r1
+ 124:	0f 92       	push	r0
+ 126:	0f b6       	in	r0, 0x3f	; 63
+ 128:	0f 92       	push	r0
+ 12a:	11 24       	eor	r1, r1
+ 12c:	8f 93       	push	r24
+ attentionFlag = TRUE;
+ 12e:	81 e0       	ldi	r24, 0x01	; 1
+ 130:	80 93 f6 00 	sts	0x00F6, r24
+ ClrBit(GICR, INT0);
+ 134:	8b b7       	in	r24, 0x3b	; 59
+ 136:	8f 7b       	andi	r24, 0xBF	; 191
+ 138:	8b bf       	out	0x3b, r24	; 59
+ //SetBit(GICR, INT1);
+}
+ 13a:	8f 91       	pop	r24
+ 13c:	0f 90       	pop	r0
+ 13e:	0f be       	out	0x3f, r0	; 63
+ 140:	0f 90       	pop	r0
+ 142:	1f 90       	pop	r1
+ 144:	18 95       	reti
+
+00000146 <main>:
+unsigned char status;
+
+volatile unsigned char attentionFlag = FALSE;
+
+int main( void )
+{ 
+ 146:	8a b3       	in	r24, 0x1a	; 26
+ 148:	86 60       	ori	r24, 0x06	; 6
+ 14a:	8a bb       	out	0x1a, r24	; 26
+
+
+
+void portsInit(){
+	LEDS_DDR|=(1<<POWER_ON_PIN)|(1<<STATUS_PIN);
+	LEDS_PORT&=~((1<<POWER_ON_PIN)|(1<<STATUS_PIN));
+ 14c:	8b b3       	in	r24, 0x1b	; 27
+ 14e:	89 7f       	andi	r24, 0xF9	; 249
+ 150:	8b bb       	out	0x1b, r24	; 27
+	SetBit(LEDS_PORT, POWER_ON_PIN);
+ 152:	da 9a       	sbi	0x1b, 2	; 27
+volatile unsigned char attentionFlag = FALSE;
+
+int main( void )
+{ 
+ portsInit();
+ sei();
+ 154:	78 94       	sei
+ init();
+ 156:	0e 94 8f 02 	call	0x51e	; 0x51e <init>
+		delay(400);
+	}
+}
+
+void statusOk(){
+		SetBit(LEDS_PORT, STATUS_PIN);
+ 15a:	d9 9a       	sbi	0x1b, 1	; 27
+ 15c:	80 e3       	ldi	r24, 0x30	; 48
+ 15e:	95 e7       	ldi	r25, 0x75	; 117
+ 160:	24 e6       	ldi	r18, 0x64	; 100
+ 162:	30 e0       	ldi	r19, 0x00	; 0
+ 164:	f9 01       	movw	r30, r18
+ 166:	31 97       	sbiw	r30, 0x01	; 1
+ 168:	f1 f7       	brne	.-4      	; 0x166 <main+0x20>
+		{
+			// wait 1/10 ms
+			_delay_loop_2(((F_CPU) / 4e3) / 10);
+			__ticks --;
+ 16a:	01 97       	sbiw	r24, 0x01	; 1
+		__ticks = 1;
+	else if (__tmp > 65535)
+	{
+		//	__ticks = requested delay in 1/10 ms
+		__ticks = (uint16_t) (__ms * 10.0);
+		while(__ticks)
+ 16c:	d9 f7       	brne	.-10     	; 0x164 <main+0x1e>
+		delay(3000);
+		ClrBit(LEDS_PORT, STATUS_PIN);
+ 16e:	d9 98       	cbi	0x1b, 1	; 27
+ 170:	20 e0       	ldi	r18, 0x00	; 0
+ 172:	30 e0       	ldi	r19, 0x00	; 0
+ 174:	44 e6       	ldi	r20, 0x64	; 100
+ 176:	50 e0       	ldi	r21, 0x00	; 0
+ 178:	0a c0       	rjmp	.+20     	; 0x18e <main+0x48>
+ 17a:	fa 01       	movw	r30, r20
+ 17c:	31 97       	sbiw	r30, 0x01	; 1
+ 17e:	f1 f7       	brne	.-4      	; 0x17c <main+0x36>
+		{
+			// wait 1/10 ms
+			_delay_loop_2(((F_CPU) / 4e3) / 10);
+			__ticks --;
+ 180:	01 97       	sbiw	r24, 0x01	; 1
+		__ticks = 1;
+	else if (__tmp > 65535)
+	{
+		//	__ticks = requested delay in 1/10 ms
+		__ticks = (uint16_t) (__ms * 10.0);
+		while(__ticks)
+ 182:	d9 f7       	brne	.-10     	; 0x17a <main+0x34>
+ portsInit();
+ sei();
+ init();
+ statusOk();
+
+ for(int i=0; i<60; i++){
+ 184:	2f 5f       	subi	r18, 0xFF	; 255
+ 186:	3f 4f       	sbci	r19, 0xFF	; 255
+ 188:	2c 33       	cpi	r18, 0x3C	; 60
+ 18a:	31 05       	cpc	r19, r1
+ 18c:	19 f0       	breq	.+6      	; 0x194 <main+0x4e>
+ 18e:	80 e2       	ldi	r24, 0x20	; 32
+ 190:	9e e4       	ldi	r25, 0x4E	; 78
+ 192:	f3 cf       	rjmp	.-26     	; 0x17a <main+0x34>
+		ClrBit(LEDS_PORT, STATUS_PIN);
+}
+
+void ints_init( void )
+{
+  MCUCR |= (1<<ISC01)|(1<<ISC00);
+ 194:	85 b7       	in	r24, 0x35	; 53
+ 196:	83 60       	ori	r24, 0x03	; 3
+ 198:	85 bf       	out	0x35, r24	; 53
+  SetBit(GICR, INT0);
+ 19a:	8b b7       	in	r24, 0x3b	; 59
+ 19c:	80 64       	ori	r24, 0x40	; 64
+ 19e:	8b bf       	out	0x3b, r24	; 59
+ //checkStatus();
+
+ 
+
+ for(;;){
+   if (attentionFlag == TRUE){
+ 1a0:	80 91 f6 00 	lds	r24, 0x00F6
+ 1a4:	81 30       	cpi	r24, 0x01	; 1
+ 1a6:	e1 f7       	brne	.-8      	; 0x1a0 <main+0x5a>
+   	   attentionFlag = FALSE;
+ 1a8:	10 92 f6 00 	sts	0x00F6, r1
+   	   statusError();
+ 1ac:	0e 94 51 00 	call	0xa2	; 0xa2 <statusError>
+	   sendMessage("+375447747024", "Attention! Someone crossed the area!");
+ 1b0:	60 e6       	ldi	r22, 0x60	; 96
+ 1b2:	70 e0       	ldi	r23, 0x00	; 0
+ 1b4:	85 e8       	ldi	r24, 0x85	; 133
+ 1b6:	90 e0       	ldi	r25, 0x00	; 0
+ 1b8:	0e 94 36 02 	call	0x46c	; 0x46c <sendMessage>
+ 1bc:	f1 cf       	rjmp	.-30     	; 0x1a0 <main+0x5a>
+
+000001be <__vector_13>:
+SIGNAL(UART0_RECEIVE_INTERRUPT)
+/*************************************************************************
+Function: UART Receive Complete interrupt
+Purpose:  called when the UART has received a character
+**************************************************************************/
+{
+ 1be:	1f 92       	push	r1
+ 1c0:	0f 92       	push	r0
+ 1c2:	0f b6       	in	r0, 0x3f	; 63
+ 1c4:	0f 92       	push	r0
+ 1c6:	11 24       	eor	r1, r1
+ 1c8:	2f 93       	push	r18
+ 1ca:	8f 93       	push	r24
+ 1cc:	9f 93       	push	r25
+ 1ce:	ef 93       	push	r30
+ 1d0:	ff 93       	push	r31
+    unsigned char usr;
+    unsigned char lastRxError;
+ 
+ 
+    /* read UART status register and UART data register */ 
+    usr  = UART0_STATUS;
+ 1d2:	9b b1       	in	r25, 0x0b	; 11
+    data = UART0_DATA;
+ 1d4:	2c b1       	in	r18, 0x0c	; 12
+#elif defined ( ATMEGA_UART )
+    lastRxError = (usr & (_BV(FE)|_BV(DOR)) );
+#endif
+        
+    /* calculate buffer index */ 
+    tmphead = ( UART_RxHead + 1) & UART_RX_BUFFER_MASK;
+ 1d6:	e0 91 39 01 	lds	r30, 0x0139
+ 1da:	ef 5f       	subi	r30, 0xFF	; 255
+ 1dc:	ef 71       	andi	r30, 0x1F	; 31
+    
+    if ( tmphead == UART_RxTail ) {
+ 1de:	80 91 3a 01 	lds	r24, 0x013A
+ 1e2:	e8 17       	cp	r30, r24
+ 1e4:	11 f4       	brne	.+4      	; 0x1ea <__vector_13+0x2c>
+ 1e6:	82 e0       	ldi	r24, 0x02	; 2
+ 1e8:	08 c0       	rjmp	.+16     	; 0x1fa <__vector_13+0x3c>
+    
+    /* */
+#if defined( AT90_UART )
+    lastRxError = (usr & (_BV(FE)|_BV(DOR)) );
+#elif defined( ATMEGA_USART )
+    lastRxError = (usr & (_BV(FE)|_BV(DOR)) );
+ 1ea:	89 2f       	mov	r24, r25
+ 1ec:	88 71       	andi	r24, 0x18	; 24
+    if ( tmphead == UART_RxTail ) {
+        /* error: receive buffer overflow */
+        lastRxError = UART_BUFFER_OVERFLOW >> 8;
+    }else{
+        /* store new index */
+        UART_RxHead = tmphead;
+ 1ee:	e0 93 39 01 	sts	0x0139, r30
+        /* store received data in buffer */
+        UART_RxBuf[tmphead] = data;
+ 1f2:	f0 e0       	ldi	r31, 0x00	; 0
+ 1f4:	e9 5e       	subi	r30, 0xE9	; 233
+ 1f6:	fe 4f       	sbci	r31, 0xFE	; 254
+ 1f8:	20 83       	st	Z, r18
+    }
+    UART_LastRxError = lastRxError;   
+ 1fa:	80 93 3b 01 	sts	0x013B, r24
+}
+ 1fe:	ff 91       	pop	r31
+ 200:	ef 91       	pop	r30
+ 202:	9f 91       	pop	r25
+ 204:	8f 91       	pop	r24
+ 206:	2f 91       	pop	r18
+ 208:	0f 90       	pop	r0
+ 20a:	0f be       	out	0x3f, r0	; 63
+ 20c:	0f 90       	pop	r0
+ 20e:	1f 90       	pop	r1
+ 210:	18 95       	reti
+
+00000212 <__vector_14>:
+SIGNAL(UART0_TRANSMIT_INTERRUPT)
+/*************************************************************************
+Function: UART Data Register Empty interrupt
+Purpose:  called when the UART is ready to transmit the next byte
+**************************************************************************/
+{
+ 212:	1f 92       	push	r1
+ 214:	0f 92       	push	r0
+ 216:	0f b6       	in	r0, 0x3f	; 63
+ 218:	0f 92       	push	r0
+ 21a:	11 24       	eor	r1, r1
+ 21c:	8f 93       	push	r24
+ 21e:	9f 93       	push	r25
+ 220:	ef 93       	push	r30
+ 222:	ff 93       	push	r31
+    unsigned char tmptail;
+
+    
+    if ( UART_TxHead != UART_TxTail) {
+ 224:	90 91 37 01 	lds	r25, 0x0137
+ 228:	80 91 38 01 	lds	r24, 0x0138
+ 22c:	98 17       	cp	r25, r24
+ 22e:	61 f0       	breq	.+24     	; 0x248 <__vector_14+0x36>
+        /* calculate and store new buffer index */
+        tmptail = (UART_TxTail + 1) & UART_TX_BUFFER_MASK;
+ 230:	e0 91 38 01 	lds	r30, 0x0138
+ 234:	ef 5f       	subi	r30, 0xFF	; 255
+ 236:	ef 71       	andi	r30, 0x1F	; 31
+        UART_TxTail = tmptail;
+ 238:	e0 93 38 01 	sts	0x0138, r30
+        /* get one byte from buffer and write it to UART */
+        UART0_DATA = UART_TxBuf[tmptail];  /* start transmission */
+ 23c:	f0 e0       	ldi	r31, 0x00	; 0
+ 23e:	e9 50       	subi	r30, 0x09	; 9
+ 240:	ff 4f       	sbci	r31, 0xFF	; 255
+ 242:	80 81       	ld	r24, Z
+ 244:	8c b9       	out	0x0c, r24	; 12
+ 246:	01 c0       	rjmp	.+2      	; 0x24a <__vector_14+0x38>
+    }else{
+        /* tx buffer empty, disable UDRE interrupt */
+        UART0_CONTROL &= ~_BV(UART0_UDRIE);
+ 248:	55 98       	cbi	0x0a, 5	; 10
+    }
+}
+ 24a:	ff 91       	pop	r31
+ 24c:	ef 91       	pop	r30
+ 24e:	9f 91       	pop	r25
+ 250:	8f 91       	pop	r24
+ 252:	0f 90       	pop	r0
+ 254:	0f be       	out	0x3f, r0	; 63
+ 256:	0f 90       	pop	r0
+ 258:	1f 90       	pop	r1
+ 25a:	18 95       	reti
+
+0000025c <uart_init>:
+Purpose:  initialize UART and set baudrate
+Input:    baudrate using macro UART_BAUD_SELECT()
+Returns:  none
+**************************************************************************/
+void uart_init(unsigned int baudrate)
+{
+ 25c:	9c 01       	movw	r18, r24
+    UART_TxHead = 0;
+ 25e:	10 92 37 01 	sts	0x0137, r1
+    UART_TxTail = 0;
+ 262:	10 92 38 01 	sts	0x0138, r1
+    UART_RxHead = 0;
+ 266:	10 92 39 01 	sts	0x0139, r1
+    UART_RxTail = 0;
+ 26a:	10 92 3a 01 	sts	0x013A, r1
+    /* enable UART receiver and transmmitter and receive complete interrupt */
+    UART0_CONTROL = _BV(RXCIE)|_BV(RXEN)|_BV(TXEN);
+
+#elif defined (ATMEGA_USART)
+    /* Set baud rate */
+    if ( baudrate & 0x8000 )
+ 26e:	97 ff       	sbrs	r25, 7
+ 270:	03 c0       	rjmp	.+6      	; 0x278 <uart_init+0x1c>
+    {
+    	 UART0_STATUS = (1<<U2X);  //Enable 2x speed 
+ 272:	82 e0       	ldi	r24, 0x02	; 2
+ 274:	8b b9       	out	0x0b, r24	; 11
+    	 baudrate &= ~0x8000;
+ 276:	3f 77       	andi	r19, 0x7F	; 127
+    }
+    UBRRH = (unsigned char)(baudrate>>8);
+ 278:	30 bd       	out	0x20, r19	; 32
+    UBRRL = (unsigned char) baudrate;
+ 27a:	29 b9       	out	0x09, r18	; 9
+   
+    /* Enable USART receiver and transmitter and receive complete interrupt */
+    UART0_CONTROL = _BV(RXCIE)|(1<<RXEN)|(1<<TXEN);
+ 27c:	88 e9       	ldi	r24, 0x98	; 152
+ 27e:	8a b9       	out	0x0a, r24	; 10
+    
+    /* Set frame format: asynchronous, 8data, no parity, 1stop bit */
+    #ifdef URSEL
+    UCSRC = (1<<URSEL)|(3<<UCSZ0);
+ 280:	86 e8       	ldi	r24, 0x86	; 134
+ 282:	80 bd       	out	0x20, r24	; 32
+    /* Enable UART receiver and transmitter and receive complete interrupt */
+    UART0_CONTROL = _BV(RXCIE)|(1<<RXEN)|(1<<TXEN);
+
+#endif
+
+}/* uart_init */
+ 284:	08 95       	ret
+
+00000286 <uart_getc>:
+Purpose:  return byte from ringbuffer  
+Returns:  lower byte:  received byte from ringbuffer
+          higher byte: last receive error
+**************************************************************************/
+unsigned int uart_getc(void)
+{    
+ 286:	90 91 39 01 	lds	r25, 0x0139
+ 28a:	80 91 3a 01 	lds	r24, 0x013A
+ 28e:	98 17       	cp	r25, r24
+ 290:	19 f4       	brne	.+6      	; 0x298 <uart_getc+0x12>
+ 292:	20 e0       	ldi	r18, 0x00	; 0
+ 294:	31 e0       	ldi	r19, 0x01	; 1
+ 296:	12 c0       	rjmp	.+36     	; 0x2bc <uart_getc+0x36>
+    if ( UART_RxHead == UART_RxTail ) {
+        return UART_NO_DATA;   /* no data available */
+    }
+    
+    /* calculate /store buffer index */
+    tmptail = (UART_RxTail + 1) & UART_RX_BUFFER_MASK;
+ 298:	e0 91 3a 01 	lds	r30, 0x013A
+ 29c:	ef 5f       	subi	r30, 0xFF	; 255
+ 29e:	ef 71       	andi	r30, 0x1F	; 31
+    UART_RxTail = tmptail; 
+ 2a0:	e0 93 3a 01 	sts	0x013A, r30
+    
+    /* get data from receive buffer */
+    data = UART_RxBuf[tmptail];
+ 2a4:	f0 e0       	ldi	r31, 0x00	; 0
+ 2a6:	e9 5e       	subi	r30, 0xE9	; 233
+ 2a8:	fe 4f       	sbci	r31, 0xFE	; 254
+ 2aa:	30 81       	ld	r19, Z
+    
+    return (UART_LastRxError << 8) + data;
+ 2ac:	20 91 3b 01 	lds	r18, 0x013B
+ 2b0:	92 2f       	mov	r25, r18
+ 2b2:	80 e0       	ldi	r24, 0x00	; 0
+ 2b4:	ac 01       	movw	r20, r24
+ 2b6:	43 0f       	add	r20, r19
+ 2b8:	51 1d       	adc	r21, r1
+ 2ba:	9a 01       	movw	r18, r20
+
+}/* uart_getc */
+ 2bc:	c9 01       	movw	r24, r18
+ 2be:	08 95       	ret
+
+000002c0 <uart_putc>:
+Purpose:  write byte to ringbuffer for transmitting via UART
+Input:    byte to be transmitted
+Returns:  none          
+**************************************************************************/
+void uart_putc(unsigned char data)
+{
+ 2c0:	28 2f       	mov	r18, r24
+    unsigned char tmphead;
+
+    
+    tmphead  = (UART_TxHead + 1) & UART_TX_BUFFER_MASK;
+ 2c2:	90 91 37 01 	lds	r25, 0x0137
+ 2c6:	9f 5f       	subi	r25, 0xFF	; 255
+ 2c8:	9f 71       	andi	r25, 0x1F	; 31
+    
+    while ( tmphead == UART_TxTail ){
+ 2ca:	80 91 38 01 	lds	r24, 0x0138
+ 2ce:	98 17       	cp	r25, r24
+ 2d0:	e1 f3       	breq	.-8      	; 0x2ca <uart_putc+0xa>
+        ;/* wait for free space in buffer */
+    }
+    
+    UART_TxBuf[tmphead] = data;
+ 2d2:	e9 2f       	mov	r30, r25
+ 2d4:	f0 e0       	ldi	r31, 0x00	; 0
+ 2d6:	e9 50       	subi	r30, 0x09	; 9
+ 2d8:	ff 4f       	sbci	r31, 0xFF	; 255
+ 2da:	20 83       	st	Z, r18
+    UART_TxHead = tmphead;
+ 2dc:	90 93 37 01 	sts	0x0137, r25
+
+    /* enable UDRE interrupt */
+    UART0_CONTROL    |= _BV(UART0_UDRIE);
+ 2e0:	55 9a       	sbi	0x0a, 5	; 10
+
+}/* uart_putc */
+ 2e2:	08 95       	ret
+
+000002e4 <uart_puts>:
+Purpose:  transmit string to UART
+Input:    string to be transmitted
+Returns:  none          
+**************************************************************************/
+void uart_puts(const char *s )
+{
+ 2e4:	dc 01       	movw	r26, r24
+ 2e6:	11 c0       	rjmp	.+34     	; 0x30a <uart_puts+0x26>
+void uart_putc(unsigned char data)
+{
+    unsigned char tmphead;
+
+    
+    tmphead  = (UART_TxHead + 1) & UART_TX_BUFFER_MASK;
+ 2e8:	90 91 37 01 	lds	r25, 0x0137
+ 2ec:	9f 5f       	subi	r25, 0xFF	; 255
+ 2ee:	9f 71       	andi	r25, 0x1F	; 31
+    
+    while ( tmphead == UART_TxTail ){
+ 2f0:	80 91 38 01 	lds	r24, 0x0138
+ 2f4:	98 17       	cp	r25, r24
+ 2f6:	e1 f3       	breq	.-8      	; 0x2f0 <uart_puts+0xc>
+Returns:  none          
+**************************************************************************/
+void uart_puts(const char *s )
+{
+    while (*s) 
+      uart_putc(*s++);
+ 2f8:	11 96       	adiw	r26, 0x01	; 1
+    
+    while ( tmphead == UART_TxTail ){
+        ;/* wait for free space in buffer */
+    }
+    
+    UART_TxBuf[tmphead] = data;
+ 2fa:	e9 2f       	mov	r30, r25
+ 2fc:	f0 e0       	ldi	r31, 0x00	; 0
+ 2fe:	e9 50       	subi	r30, 0x09	; 9
+ 300:	ff 4f       	sbci	r31, 0xFF	; 255
+ 302:	20 83       	st	Z, r18
+    UART_TxHead = tmphead;
+ 304:	90 93 37 01 	sts	0x0137, r25
+
+    /* enable UDRE interrupt */
+    UART0_CONTROL    |= _BV(UART0_UDRIE);
+ 308:	55 9a       	sbi	0x0a, 5	; 10
+Input:    string to be transmitted
+Returns:  none          
+**************************************************************************/
+void uart_puts(const char *s )
+{
+    while (*s) 
+ 30a:	2c 91       	ld	r18, X
+ 30c:	22 23       	and	r18, r18
+ 30e:	61 f7       	brne	.-40     	; 0x2e8 <uart_puts+0x4>
+      uart_putc(*s++);
+
+}/* uart_puts */
+ 310:	08 95       	ret
+
+00000312 <uart_puts_p>:
+Purpose:  transmit string from program memory to UART
+Input:    program memory string to be transmitted
+Returns:  none
+**************************************************************************/
+void uart_puts_p(const char *progmem_s )
+{
+ 312:	ac 01       	movw	r20, r24
+ 314:	10 c0       	rjmp	.+32     	; 0x336 <uart_puts_p+0x24>
+void uart_putc(unsigned char data)
+{
+    unsigned char tmphead;
+
+    
+    tmphead  = (UART_TxHead + 1) & UART_TX_BUFFER_MASK;
+ 316:	20 91 37 01 	lds	r18, 0x0137
+ 31a:	2f 5f       	subi	r18, 0xFF	; 255
+ 31c:	2f 71       	andi	r18, 0x1F	; 31
+    
+    while ( tmphead == UART_TxTail ){
+ 31e:	80 91 38 01 	lds	r24, 0x0138
+ 322:	28 17       	cp	r18, r24
+ 324:	e1 f3       	breq	.-8      	; 0x31e <uart_puts_p+0xc>
+        ;/* wait for free space in buffer */
+    }
+    
+    UART_TxBuf[tmphead] = data;
+ 326:	e2 2f       	mov	r30, r18
+ 328:	f0 e0       	ldi	r31, 0x00	; 0
+ 32a:	e9 50       	subi	r30, 0x09	; 9
+ 32c:	ff 4f       	sbci	r31, 0xFF	; 255
+ 32e:	90 83       	st	Z, r25
+    UART_TxHead = tmphead;
+ 330:	20 93 37 01 	sts	0x0137, r18
+
+    /* enable UDRE interrupt */
+    UART0_CONTROL    |= _BV(UART0_UDRIE);
+ 334:	55 9a       	sbi	0x0a, 5	; 10
+ 336:	fa 01       	movw	r30, r20
+**************************************************************************/
+void uart_puts_p(const char *progmem_s )
+{
+    register char c;
+    
+    while ( (c = pgm_read_byte(progmem_s++)) ) 
+ 338:	4f 5f       	subi	r20, 0xFF	; 255
+ 33a:	5f 4f       	sbci	r21, 0xFF	; 255
+ 33c:	94 91       	lpm	r25, Z+
+ 33e:	99 23       	and	r25, r25
+ 340:	51 f7       	brne	.-44     	; 0x316 <uart_puts_p+0x4>
+      uart_putc(c);
+
+}/* uart_puts_p */
+ 342:	08 95       	ret
+
+00000344 <simPowerOn>:
+		// Now clear data_in, the USART can reuse it now
+		memset(data_in[0], 0, len);
+	}
+}
+
+void simPowerOn(){
+ 344:	80 e3       	ldi	r24, 0x30	; 48
+ 346:	95 e7       	ldi	r25, 0x75	; 117
+ 348:	24 e6       	ldi	r18, 0x64	; 100
+ 34a:	30 e0       	ldi	r19, 0x00	; 0
+ 34c:	f9 01       	movw	r30, r18
+ 34e:	31 97       	sbiw	r30, 0x01	; 1
+ 350:	f1 f7       	brne	.-4      	; 0x34e <simPowerOn+0xa>
+		{
+			// wait 1/10 ms
+			_delay_loop_2(((F_CPU) / 4e3) / 10);
+			__ticks --;
+ 352:	01 97       	sbiw	r24, 0x01	; 1
+		__ticks = 1;
+	else if (__tmp > 65535)
+	{
+		//	__ticks = requested delay in 1/10 ms
+		__ticks = (uint16_t) (__ms * 10.0);
+		while(__ticks)
+ 354:	d9 f7       	brne	.-10     	; 0x34c <simPowerOn+0x8>
+	delay(startDelay);
+	SetBit(pwrDDR, pwrPin);
+ 356:	a6 9a       	sbi	0x14, 6	; 20
+	ClrBit(pwrPORT, pwrPin);
+ 358:	ae 98       	cbi	0x15, 6	; 21
+ 35a:	80 e3       	ldi	r24, 0x30	; 48
+ 35c:	95 e7       	ldi	r25, 0x75	; 117
+ 35e:	24 e6       	ldi	r18, 0x64	; 100
+ 360:	30 e0       	ldi	r19, 0x00	; 0
+ 362:	f9 01       	movw	r30, r18
+ 364:	31 97       	sbiw	r30, 0x01	; 1
+ 366:	f1 f7       	brne	.-4      	; 0x364 <simPowerOn+0x20>
+		{
+			// wait 1/10 ms
+			_delay_loop_2(((F_CPU) / 4e3) / 10);
+			__ticks --;
+ 368:	01 97       	sbiw	r24, 0x01	; 1
+		__ticks = 1;
+	else if (__tmp > 65535)
+	{
+		//	__ticks = requested delay in 1/10 ms
+		__ticks = (uint16_t) (__ms * 10.0);
+		while(__ticks)
+ 36a:	d9 f7       	brne	.-10     	; 0x362 <simPowerOn+0x1e>
+	delay(initDelay);
+	ClrBit(pwrDDR, pwrPin);
+ 36c:	a6 98       	cbi	0x14, 6	; 20
+}
+ 36e:	08 95       	ret
+
+00000370 <getCommByte>:
+	uart_puts(data_out);
+	sendCRLF();
+	delay(commDelay);
+}
+
+unsigned char getCommByte(unsigned int data){
+ 370:	08 95       	ret
+
+00000372 <sendCRLF>:
+	return (data & 0x00FF);
+}
+
+void sendCRLF(){
+ 372:	8d e0       	ldi	r24, 0x0D	; 13
+ 374:	0e 94 60 01 	call	0x2c0	; 0x2c0 <uart_putc>
+	uart_putc(CR);
+	uart_putc(LF);
+ 378:	8a e0       	ldi	r24, 0x0A	; 10
+ 37a:	0e 94 60 01 	call	0x2c0	; 0x2c0 <uart_putc>
+}
+ 37e:	08 95       	ret
+
+00000380 <simDialCall>:
+//	 return FALSE;
+//	}
+	return TRUE;	
+}
+
+void simDialCall(char *phone){
+ 380:	0f 93       	push	r16
+ 382:	1f 93       	push	r17
+ 384:	8c 01       	movw	r16, r24
+	data_out[30] = strcat(data_out, "ATD + ");
+ 386:	63 e9       	ldi	r22, 0x93	; 147
+ 388:	70 e0       	ldi	r23, 0x00	; 0
+ 38a:	89 e7       	ldi	r24, 0x79	; 121
+ 38c:	91 e0       	ldi	r25, 0x01	; 1
+ 38e:	0e 94 0f 03 	call	0x61e	; 0x61e <strcat>
+ 392:	80 93 97 01 	sts	0x0197, r24
+	data_out[30] = strcat(data_out, phone);
+ 396:	b8 01       	movw	r22, r16
+ 398:	89 e7       	ldi	r24, 0x79	; 121
+ 39a:	91 e0       	ldi	r25, 0x01	; 1
+ 39c:	0e 94 0f 03 	call	0x61e	; 0x61e <strcat>
+ 3a0:	80 93 97 01 	sts	0x0197, r24
+	uart_puts(data_out);
+ 3a4:	89 e7       	ldi	r24, 0x79	; 121
+ 3a6:	91 e0       	ldi	r25, 0x01	; 1
+ 3a8:	0e 94 72 01 	call	0x2e4	; 0x2e4 <uart_puts>
+	sendCRLF();
+ 3ac:	0e 94 b9 01 	call	0x372	; 0x372 <sendCRLF>
+ 3b0:	88 e8       	ldi	r24, 0x88	; 136
+ 3b2:	93 e1       	ldi	r25, 0x13	; 19
+ 3b4:	24 e6       	ldi	r18, 0x64	; 100
+ 3b6:	30 e0       	ldi	r19, 0x00	; 0
+ 3b8:	f9 01       	movw	r30, r18
+ 3ba:	31 97       	sbiw	r30, 0x01	; 1
+ 3bc:	f1 f7       	brne	.-4      	; 0x3ba <simDialCall+0x3a>
+		{
+			// wait 1/10 ms
+			_delay_loop_2(((F_CPU) / 4e3) / 10);
+			__ticks --;
+ 3be:	01 97       	sbiw	r24, 0x01	; 1
+		__ticks = 1;
+	else if (__tmp > 65535)
+	{
+		//	__ticks = requested delay in 1/10 ms
+		__ticks = (uint16_t) (__ms * 10.0);
+		while(__ticks)
+ 3c0:	d9 f7       	brne	.-10     	; 0x3b8 <simDialCall+0x38>
+	delay(commDelay);
+}
+ 3c2:	1f 91       	pop	r17
+ 3c4:	0f 91       	pop	r16
+ 3c6:	08 95       	ret
+
+000003c8 <dialCall>:
+	simSetPhone(phone);
+	unsigned char sendMessageFlag = simSendMessage(message);
+	return setTextFlag && sendMessageFlag;
+}
+
+void dialCall(const char *phone){
+ 3c8:	0e 94 c0 01 	call	0x380	; 0x380 <simDialCall>
+	simDialCall(phone);
+}
+ 3cc:	08 95       	ret
+
+000003ce <simSendMessage>:
+	sendCRLF();
+	delay(commDelay);
+	return getAnswer();
+}
+
+unsigned char simSendMessage(char *message){
+ 3ce:	0e 94 72 01 	call	0x2e4	; 0x2e4 <uart_puts>
+	uart_puts(message);
+	sendCRLF();
+ 3d2:	0e 94 b9 01 	call	0x372	; 0x372 <sendCRLF>
+ 3d6:	88 e8       	ldi	r24, 0x88	; 136
+ 3d8:	93 e1       	ldi	r25, 0x13	; 19
+ 3da:	24 e6       	ldi	r18, 0x64	; 100
+ 3dc:	30 e0       	ldi	r19, 0x00	; 0
+ 3de:	f9 01       	movw	r30, r18
+ 3e0:	31 97       	sbiw	r30, 0x01	; 1
+ 3e2:	f1 f7       	brne	.-4      	; 0x3e0 <simSendMessage+0x12>
+		{
+			// wait 1/10 ms
+			_delay_loop_2(((F_CPU) / 4e3) / 10);
+			__ticks --;
+ 3e4:	01 97       	sbiw	r24, 0x01	; 1
+		__ticks = 1;
+	else if (__tmp > 65535)
+	{
+		//	__ticks = requested delay in 1/10 ms
+		__ticks = (uint16_t) (__ms * 10.0);
+		while(__ticks)
+ 3e6:	d9 f7       	brne	.-10     	; 0x3de <simSendMessage+0x10>
+	delay(commDelay);
+	uart_putc(inputEnd);
+ 3e8:	8a e1       	ldi	r24, 0x1A	; 26
+ 3ea:	0e 94 60 01 	call	0x2c0	; 0x2c0 <uart_putc>
+//	if (strncasecmp( getAnswer(), messageSendResp, 7) != 0){
+//	 return FALSE;
+//	}
+	return TRUE;	
+}
+ 3ee:	81 e0       	ldi	r24, 0x01	; 1
+ 3f0:	08 95       	ret
+
+000003f2 <simSetPhone>:
+//	 return FALSE;
+//	}
+	return TRUE;
+}
+
+void simSetPhone(char *phone){
+ 3f2:	0f 93       	push	r16
+ 3f4:	1f 93       	push	r17
+ 3f6:	8c 01       	movw	r16, r24
+	data_out[30] = strcat(data_out, "AT+CMGS=\"");
+ 3f8:	6a e9       	ldi	r22, 0x9A	; 154
+ 3fa:	70 e0       	ldi	r23, 0x00	; 0
+ 3fc:	89 e7       	ldi	r24, 0x79	; 121
+ 3fe:	91 e0       	ldi	r25, 0x01	; 1
+ 400:	0e 94 0f 03 	call	0x61e	; 0x61e <strcat>
+ 404:	80 93 97 01 	sts	0x0197, r24
+	data_out[30] = strcat(data_out, phone);
+ 408:	b8 01       	movw	r22, r16
+ 40a:	89 e7       	ldi	r24, 0x79	; 121
+ 40c:	91 e0       	ldi	r25, 0x01	; 1
+ 40e:	0e 94 0f 03 	call	0x61e	; 0x61e <strcat>
+ 412:	80 93 97 01 	sts	0x0197, r24
+	data_out[30] = strcat(data_out, "\"");
+ 416:	64 ea       	ldi	r22, 0xA4	; 164
+ 418:	70 e0       	ldi	r23, 0x00	; 0
+ 41a:	89 e7       	ldi	r24, 0x79	; 121
+ 41c:	91 e0       	ldi	r25, 0x01	; 1
+ 41e:	0e 94 0f 03 	call	0x61e	; 0x61e <strcat>
+ 422:	80 93 97 01 	sts	0x0197, r24
+	uart_puts(data_out);
+ 426:	89 e7       	ldi	r24, 0x79	; 121
+ 428:	91 e0       	ldi	r25, 0x01	; 1
+ 42a:	0e 94 72 01 	call	0x2e4	; 0x2e4 <uart_puts>
+	sendCRLF();
+ 42e:	0e 94 b9 01 	call	0x372	; 0x372 <sendCRLF>
+ 432:	88 e8       	ldi	r24, 0x88	; 136
+ 434:	93 e1       	ldi	r25, 0x13	; 19
+ 436:	24 e6       	ldi	r18, 0x64	; 100
+ 438:	30 e0       	ldi	r19, 0x00	; 0
+ 43a:	f9 01       	movw	r30, r18
+ 43c:	31 97       	sbiw	r30, 0x01	; 1
+ 43e:	f1 f7       	brne	.-4      	; 0x43c <simSetPhone+0x4a>
+		{
+			// wait 1/10 ms
+			_delay_loop_2(((F_CPU) / 4e3) / 10);
+			__ticks --;
+ 440:	01 97       	sbiw	r24, 0x01	; 1
+		__ticks = 1;
+	else if (__tmp > 65535)
+	{
+		//	__ticks = requested delay in 1/10 ms
+		__ticks = (uint16_t) (__ms * 10.0);
+		while(__ticks)
+ 442:	d9 f7       	brne	.-10     	; 0x43a <simSetPhone+0x48>
+	delay(commDelay);
+}
+ 444:	1f 91       	pop	r17
+ 446:	0f 91       	pop	r16
+ 448:	08 95       	ret
+
+0000044a <simSetTextInput>:
+//			break;
+//		}	
+	//}
+}
+
+unsigned char simSetTextInput(){
+ 44a:	86 ea       	ldi	r24, 0xA6	; 166
+ 44c:	90 e0       	ldi	r25, 0x00	; 0
+ 44e:	0e 94 72 01 	call	0x2e4	; 0x2e4 <uart_puts>
+	uart_puts("AT+CMGF=1");
+	sendCRLF();
+ 452:	0e 94 b9 01 	call	0x372	; 0x372 <sendCRLF>
+ 456:	88 e8       	ldi	r24, 0x88	; 136
+ 458:	93 e1       	ldi	r25, 0x13	; 19
+ 45a:	24 e6       	ldi	r18, 0x64	; 100
+ 45c:	30 e0       	ldi	r19, 0x00	; 0
+ 45e:	f9 01       	movw	r30, r18
+ 460:	31 97       	sbiw	r30, 0x01	; 1
+ 462:	f1 f7       	brne	.-4      	; 0x460 <simSetTextInput+0x16>
+		{
+			// wait 1/10 ms
+			_delay_loop_2(((F_CPU) / 4e3) / 10);
+			__ticks --;
+ 464:	01 97       	sbiw	r24, 0x01	; 1
+		__ticks = 1;
+	else if (__tmp > 65535)
+	{
+		//	__ticks = requested delay in 1/10 ms
+		__ticks = (uint16_t) (__ms * 10.0);
+		while(__ticks)
+ 466:	d9 f7       	brne	.-10     	; 0x45e <simSetTextInput+0x14>
+	delay(commDelay);
+//	if (strncmp( getAnswer(), successResp, 2 ) != 0){
+//	 return FALSE;
+//	}
+	return TRUE;
+}
+ 468:	81 e0       	ldi	r24, 0x01	; 1
+ 46a:	08 95       	ret
+
+0000046c <sendMessage>:
+	}else{
+		return FALSE;
+	}
+}
+
+unsigned char sendMessage(const char *phone, const char *message){
+ 46c:	df 92       	push	r13
+ 46e:	ef 92       	push	r14
+ 470:	ff 92       	push	r15
+ 472:	0f 93       	push	r16
+ 474:	1f 93       	push	r17
+ 476:	8c 01       	movw	r16, r24
+ 478:	7b 01       	movw	r14, r22
+	unsigned char setTextFlag = simSetTextInput();
+ 47a:	0e 94 25 02 	call	0x44a	; 0x44a <simSetTextInput>
+ 47e:	d8 2e       	mov	r13, r24
+	simSetPhone(phone);
+ 480:	c8 01       	movw	r24, r16
+ 482:	0e 94 f9 01 	call	0x3f2	; 0x3f2 <simSetPhone>
+	unsigned char sendMessageFlag = simSendMessage(message);
+ 486:	c7 01       	movw	r24, r14
+ 488:	0e 94 e7 01 	call	0x3ce	; 0x3ce <simSendMessage>
+	return setTextFlag && sendMessageFlag;
+ 48c:	dd 20       	and	r13, r13
+ 48e:	19 f4       	brne	.+6      	; 0x496 <sendMessage+0x2a>
+ 490:	80 e0       	ldi	r24, 0x00	; 0
+ 492:	90 e0       	ldi	r25, 0x00	; 0
+ 494:	07 c0       	rjmp	.+14     	; 0x4a4 <sendMessage+0x38>
+ 496:	90 e0       	ldi	r25, 0x00	; 0
+ 498:	88 23       	and	r24, r24
+ 49a:	09 f4       	brne	.+2      	; 0x49e <sendMessage+0x32>
+ 49c:	91 e0       	ldi	r25, 0x01	; 1
+ 49e:	81 e0       	ldi	r24, 0x01	; 1
+ 4a0:	98 27       	eor	r25, r24
+ 4a2:	89 2f       	mov	r24, r25
+}
+ 4a4:	1f 91       	pop	r17
+ 4a6:	0f 91       	pop	r16
+ 4a8:	ff 90       	pop	r15
+ 4aa:	ef 90       	pop	r14
+ 4ac:	df 90       	pop	r13
+ 4ae:	08 95       	ret
+
+000004b0 <waitForReg>:
+	  //return FALSE;
+	//}
+	return TRUE;
+}
+
+void waitForReg(){
+ 4b0:	81 ee       	ldi	r24, 0xE1	; 225
+ 4b2:	90 e0       	ldi	r25, 0x00	; 0
+ 4b4:	0e 94 72 01 	call	0x2e4	; 0x2e4 <uart_puts>
+	//while(1){
+		uart_puts(netReq);
+		sendCRLF();
+ 4b8:	0e 94 b9 01 	call	0x372	; 0x372 <sendCRLF>
+ 4bc:	20 e0       	ldi	r18, 0x00	; 0
+ 4be:	30 e0       	ldi	r19, 0x00	; 0
+ 4c0:	44 e6       	ldi	r20, 0x64	; 100
+ 4c2:	50 e0       	ldi	r21, 0x00	; 0
+ 4c4:	0a c0       	rjmp	.+20     	; 0x4da <waitForReg+0x2a>
+ 4c6:	fa 01       	movw	r30, r20
+ 4c8:	31 97       	sbiw	r30, 0x01	; 1
+ 4ca:	f1 f7       	brne	.-4      	; 0x4c8 <waitForReg+0x18>
+		{
+			// wait 1/10 ms
+			_delay_loop_2(((F_CPU) / 4e3) / 10);
+			__ticks --;
+ 4cc:	01 97       	sbiw	r24, 0x01	; 1
+		__ticks = 1;
+	else if (__tmp > 65535)
+	{
+		//	__ticks = requested delay in 1/10 ms
+		__ticks = (uint16_t) (__ms * 10.0);
+		while(__ticks)
+ 4ce:	d9 f7       	brne	.-10     	; 0x4c6 <waitForReg+0x16>
+		for(int i=0; i<8; i++){
+ 4d0:	2f 5f       	subi	r18, 0xFF	; 255
+ 4d2:	3f 4f       	sbci	r19, 0xFF	; 255
+ 4d4:	28 30       	cpi	r18, 0x08	; 8
+ 4d6:	31 05       	cpc	r19, r1
+ 4d8:	19 f0       	breq	.+6      	; 0x4e0 <waitForReg+0x30>
+ 4da:	80 e3       	ldi	r24, 0x30	; 48
+ 4dc:	95 e7       	ldi	r25, 0x75	; 117
+ 4de:	f3 cf       	rjmp	.-26     	; 0x4c6 <waitForReg+0x16>
+ 4e0:	08 95       	ret
+
+000004e2 <simCommInit>:
+	ClrBit(pwrPORT, pwrPin);
+	delay(initDelay);
+	ClrBit(pwrDDR, pwrPin);
+}
+
+unsigned char simCommInit(){
+ 4e2:	89 e1       	ldi	r24, 0x19	; 25
+ 4e4:	90 e0       	ldi	r25, 0x00	; 0
+ 4e6:	0e 94 2e 01 	call	0x25c	; 0x25c <uart_init>
+ 4ea:	88 e8       	ldi	r24, 0x88	; 136
+ 4ec:	93 e1       	ldi	r25, 0x13	; 19
+ 4ee:	24 e6       	ldi	r18, 0x64	; 100
+ 4f0:	30 e0       	ldi	r19, 0x00	; 0
+ 4f2:	f9 01       	movw	r30, r18
+ 4f4:	31 97       	sbiw	r30, 0x01	; 1
+ 4f6:	f1 f7       	brne	.-4      	; 0x4f4 <simCommInit+0x12>
+		{
+			// wait 1/10 ms
+			_delay_loop_2(((F_CPU) / 4e3) / 10);
+			__ticks --;
+ 4f8:	01 97       	sbiw	r24, 0x01	; 1
+		__ticks = 1;
+	else if (__tmp > 65535)
+	{
+		//	__ticks = requested delay in 1/10 ms
+		__ticks = (uint16_t) (__ms * 10.0);
+		while(__ticks)
+ 4fa:	d9 f7       	brne	.-10     	; 0x4f2 <simCommInit+0x10>
+	uart_init( UART_BAUD_SELECT(UART_BAUD_RATE,F_CPU) );
+	delay(commDelay);
+	uart_puts(baudReq);
+ 4fc:	8a ee       	ldi	r24, 0xEA	; 234
+ 4fe:	90 e0       	ldi	r25, 0x00	; 0
+ 500:	0e 94 72 01 	call	0x2e4	; 0x2e4 <uart_puts>
+	sendCRLF();
+ 504:	0e 94 b9 01 	call	0x372	; 0x372 <sendCRLF>
+ 508:	88 e8       	ldi	r24, 0x88	; 136
+ 50a:	93 e1       	ldi	r25, 0x13	; 19
+ 50c:	24 e6       	ldi	r18, 0x64	; 100
+ 50e:	30 e0       	ldi	r19, 0x00	; 0
+ 510:	f9 01       	movw	r30, r18
+ 512:	31 97       	sbiw	r30, 0x01	; 1
+ 514:	f1 f7       	brne	.-4      	; 0x512 <simCommInit+0x30>
+		{
+			// wait 1/10 ms
+			_delay_loop_2(((F_CPU) / 4e3) / 10);
+			__ticks --;
+ 516:	01 97       	sbiw	r24, 0x01	; 1
+		__ticks = 1;
+	else if (__tmp > 65535)
+	{
+		//	__ticks = requested delay in 1/10 ms
+		__ticks = (uint16_t) (__ms * 10.0);
+		while(__ticks)
+ 518:	d9 f7       	brne	.-10     	; 0x510 <simCommInit+0x2e>
+	delay(commDelay);
+	//if (strncmp( getAnswer(), successResp, 2 ) != 0){
+	  //return FALSE;
+	//}
+	return TRUE;
+}
+ 51a:	81 e0       	ldi	r24, 0x01	; 1
+ 51c:	08 95       	ret
+
+0000051e <init>:
+void sendCRLF(){
+	uart_putc(CR);
+	uart_putc(LF);
+}
+
+unsigned char init(){
+ 51e:	0e 94 a2 01 	call	0x344	; 0x344 <simPowerOn>
+	simPowerOn();
+	unsigned char initFlag =  simCommInit();
+ 522:	0e 94 71 02 	call	0x4e2	; 0x4e2 <simCommInit>
+	if (initFlag = TRUE){
+		waitForReg();
+ 526:	0e 94 58 02 	call	0x4b0	; 0x4b0 <waitForReg>
+	}else{
+		return FALSE;
+	}
+}
+ 52a:	08 95       	ret
+
+0000052c <copy_command>:
+	copy_command(j);
+	return command_in;	
+}
+
+void copy_command(int len)
+{
+ 52c:	0f 93       	push	r16
+ 52e:	1f 93       	push	r17
+ 530:	18 2f       	mov	r17, r24
+ 532:	09 2f       	mov	r16, r25
+    return 1;
+}
+
+static __inline__ uint8_t __iCliRetVal(void)
+{
+    cli();
+ 534:	f8 94       	cli
+// The USART might interrupt this - don't let that happen!
+	ATOMIC_BLOCK(ATOMIC_FORCEON) {
+		// Copy the contents of data_in into command_in
+		memcpy(command_in, data_in, len);
+ 536:	2d e3       	ldi	r18, 0x3D	; 61
+ 538:	31 e0       	ldi	r19, 0x01	; 1
+ 53a:	8b e5       	ldi	r24, 0x5B	; 91
+ 53c:	91 e0       	ldi	r25, 0x01	; 1
+ 53e:	41 2f       	mov	r20, r17
+ 540:	50 2f       	mov	r21, r16
+ 542:	bc 01       	movw	r22, r24
+ 544:	c9 01       	movw	r24, r18
+ 546:	0e 94 ff 02 	call	0x5fe	; 0x5fe <memcpy>
+ 
+		// Now clear data_in, the USART can reuse it now
+		memset(data_in[0], 0, len);
+ 54a:	80 91 5b 01 	lds	r24, 0x015B
+ 54e:	41 2f       	mov	r20, r17
+ 550:	50 2f       	mov	r21, r16
+ 552:	60 e0       	ldi	r22, 0x00	; 0
+ 554:	70 e0       	ldi	r23, 0x00	; 0
+ 556:	90 e0       	ldi	r25, 0x00	; 0
+ 558:	0e 94 08 03 	call	0x610	; 0x610 <memset>
+    return 1;
+}
+
+static __inline__ void __iSeiParam(const uint8_t *__s)
+{
+    sei();
+ 55c:	78 94       	sei
+    __asm__ volatile ("" ::: "memory");
+ 55e:	1f 91       	pop	r17
+ 560:	0f 91       	pop	r16
+ 562:	08 95       	ret
+
+00000564 <getAnswer>:
+volatile unsigned char command_in[30];
+
+unsigned char getCommByte(unsigned int data);
+void sendCRLF();
+
+char *getAnswer(){
+ 564:	cf 93       	push	r28
+ 566:	df 93       	push	r29
+ 568:	c0 e0       	ldi	r28, 0x00	; 0
+ 56a:	d0 e0       	ldi	r29, 0x00	; 0
+    unsigned int c = UART_NO_DATA;
+	int j=0;
+	while(1){
+		c = uart_getc();
+ 56c:	0e 94 43 01 	call	0x286	; 0x286 <uart_getc>
+		if (c != UART_NO_DATA){
+ 570:	21 e0       	ldi	r18, 0x01	; 1
+ 572:	80 30       	cpi	r24, 0x00	; 0
+ 574:	92 07       	cpc	r25, r18
+ 576:	d1 f3       	breq	.-12     	; 0x56c <getAnswer+0x8>
+			unsigned char answerChar = getCommByte(c);
+			if (answerChar == CR && j!=0){
+ 578:	8d 30       	cpi	r24, 0x0D	; 13
+ 57a:	19 f4       	brne	.+6      	; 0x582 <getAnswer+0x1e>
+ 57c:	20 97       	sbiw	r28, 0x00	; 0
+ 57e:	b1 f3       	breq	.-20     	; 0x56c <getAnswer+0x8>
+ 580:	08 c0       	rjmp	.+16     	; 0x592 <getAnswer+0x2e>
+				break;
+			} else if (answerChar != LF && answerChar!= CR){
+ 582:	8a 30       	cpi	r24, 0x0A	; 10
+ 584:	99 f3       	breq	.-26     	; 0x56c <getAnswer+0x8>
+			  data_in[j] = answerChar;
+ 586:	fe 01       	movw	r30, r28
+ 588:	e5 5a       	subi	r30, 0xA5	; 165
+ 58a:	fe 4f       	sbci	r31, 0xFE	; 254
+ 58c:	80 83       	st	Z, r24
+			  j++;
+ 58e:	21 96       	adiw	r28, 0x01	; 1
+ 590:	ed cf       	rjmp	.-38     	; 0x56c <getAnswer+0x8>
+			}
+			c = UART_NO_DATA;
+		}
+	}
+	copy_command(j);
+ 592:	ce 01       	movw	r24, r28
+ 594:	0e 94 96 02 	call	0x52c	; 0x52c <copy_command>
+	return command_in;	
+}
+ 598:	8d e3       	ldi	r24, 0x3D	; 61
+ 59a:	91 e0       	ldi	r25, 0x01	; 1
+ 59c:	df 91       	pop	r29
+ 59e:	cf 91       	pop	r28
+ 5a0:	08 95       	ret
+
+000005a2 <searchContact>:
+	uart_puts(data_out);
+	sendCRLF();
+	delay(commDelay);
+}
+
+void *searchContact(char *contact){
+ 5a2:	0f 93       	push	r16
+ 5a4:	1f 93       	push	r17
+ 5a6:	8c 01       	movw	r16, r24
+	data_out[30] = strcat(data_out, "AT+CPBF=\"");
+ 5a8:	60 eb       	ldi	r22, 0xB0	; 176
+ 5aa:	70 e0       	ldi	r23, 0x00	; 0
+ 5ac:	89 e7       	ldi	r24, 0x79	; 121
+ 5ae:	91 e0       	ldi	r25, 0x01	; 1
+ 5b0:	0e 94 0f 03 	call	0x61e	; 0x61e <strcat>
+ 5b4:	80 93 97 01 	sts	0x0197, r24
+	data_out[30] = strcat(data_out, contact);
+ 5b8:	b8 01       	movw	r22, r16
+ 5ba:	89 e7       	ldi	r24, 0x79	; 121
+ 5bc:	91 e0       	ldi	r25, 0x01	; 1
+ 5be:	0e 94 0f 03 	call	0x61e	; 0x61e <strcat>
+ 5c2:	80 93 97 01 	sts	0x0197, r24
+	data_out[30] = strcat(data_out, "\"");
+ 5c6:	64 ea       	ldi	r22, 0xA4	; 164
+ 5c8:	70 e0       	ldi	r23, 0x00	; 0
+ 5ca:	89 e7       	ldi	r24, 0x79	; 121
+ 5cc:	91 e0       	ldi	r25, 0x01	; 1
+ 5ce:	0e 94 0f 03 	call	0x61e	; 0x61e <strcat>
+ 5d2:	80 93 97 01 	sts	0x0197, r24
+	uart_puts(data_out);
+ 5d6:	89 e7       	ldi	r24, 0x79	; 121
+ 5d8:	91 e0       	ldi	r25, 0x01	; 1
+ 5da:	0e 94 72 01 	call	0x2e4	; 0x2e4 <uart_puts>
+	sendCRLF();
+ 5de:	0e 94 b9 01 	call	0x372	; 0x372 <sendCRLF>
+ 5e2:	88 e8       	ldi	r24, 0x88	; 136
+ 5e4:	93 e1       	ldi	r25, 0x13	; 19
+ 5e6:	24 e6       	ldi	r18, 0x64	; 100
+ 5e8:	30 e0       	ldi	r19, 0x00	; 0
+ 5ea:	f9 01       	movw	r30, r18
+ 5ec:	31 97       	sbiw	r30, 0x01	; 1
+ 5ee:	f1 f7       	brne	.-4      	; 0x5ec <searchContact+0x4a>
+		{
+			// wait 1/10 ms
+			_delay_loop_2(((F_CPU) / 4e3) / 10);
+			__ticks --;
+ 5f0:	01 97       	sbiw	r24, 0x01	; 1
+		__ticks = 1;
+	else if (__tmp > 65535)
+	{
+		//	__ticks = requested delay in 1/10 ms
+		__ticks = (uint16_t) (__ms * 10.0);
+		while(__ticks)
+ 5f2:	d9 f7       	brne	.-10     	; 0x5ea <searchContact+0x48>
+	delay(commDelay);
+	return getAnswer();
+ 5f4:	0e 94 b2 02 	call	0x564	; 0x564 <getAnswer>
+}
+ 5f8:	1f 91       	pop	r17
+ 5fa:	0f 91       	pop	r16
+ 5fc:	08 95       	ret
+
+000005fe <memcpy>:
+ 5fe:	fb 01       	movw	r30, r22
+ 600:	dc 01       	movw	r26, r24
+ 602:	02 c0       	rjmp	.+4      	; 0x608 <memcpy+0xa>
+ 604:	01 90       	ld	r0, Z+
+ 606:	0d 92       	st	X+, r0
+ 608:	41 50       	subi	r20, 0x01	; 1
+ 60a:	50 40       	sbci	r21, 0x00	; 0
+ 60c:	d8 f7       	brcc	.-10     	; 0x604 <memcpy+0x6>
+ 60e:	08 95       	ret
+
+00000610 <memset>:
+ 610:	dc 01       	movw	r26, r24
+ 612:	01 c0       	rjmp	.+2      	; 0x616 <memset+0x6>
+ 614:	6d 93       	st	X+, r22
+ 616:	41 50       	subi	r20, 0x01	; 1
+ 618:	50 40       	sbci	r21, 0x00	; 0
+ 61a:	e0 f7       	brcc	.-8      	; 0x614 <memset+0x4>
+ 61c:	08 95       	ret
+
+0000061e <strcat>:
+ 61e:	fb 01       	movw	r30, r22
+ 620:	dc 01       	movw	r26, r24
+ 622:	0d 90       	ld	r0, X+
+ 624:	00 20       	and	r0, r0
+ 626:	e9 f7       	brne	.-6      	; 0x622 <strcat+0x4>
+ 628:	11 97       	sbiw	r26, 0x01	; 1
+ 62a:	01 90       	ld	r0, Z+
+ 62c:	0d 92       	st	X+, r0
+ 62e:	00 20       	and	r0, r0
+ 630:	e1 f7       	brne	.-8      	; 0x62a <strcat+0xc>
+ 632:	08 95       	ret
+
+00000634 <_exit>:
+ 634:	f8 94       	cli
+
+00000636 <__stop_program>:
+ 636:	ff cf       	rjmp	.-2      	; 0x636 <__stop_program>
